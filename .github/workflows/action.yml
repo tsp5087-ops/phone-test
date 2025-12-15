@@ -23,4 +23,4 @@ jobs:
       # 3. 파이썬 실행
       - name: 앱 실행 스크립트 가동
         run: |
-          python simple_start.py
+          python login.py
