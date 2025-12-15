@@ -1,0 +1,26 @@
+# 파일명: .github/workflows/action.yml
+name: 폰 켜기 테스트
+
+# 언제 실행할까? -> 내가 버튼 누를 때 (workflow_dispatch)
+on:
+  workflow_dispatch:
+
+jobs:
+  open-app-job:
+    # 👇 [핵심] 깃허브 컴퓨터 말고 "내 컴퓨터"에서 실행해라!
+    runs-on: self-hosted
+
+    steps:
+      # 1. 내 코드(simple_start.py) 받아오기
+      - name: 코드 체크아웃
+        uses: actions/checkout@v3
+
+      # 2. 필요한 라이브러리 설치
+      - name: Appium 라이브러리 설치
+        run: |
+          pip install Appium-Python-Client
+
+      # 3. 파이썬 실행
+      - name: 앱 실행 스크립트 가동
+        run: |
+          python simple_start.py
