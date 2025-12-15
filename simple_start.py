@@ -1,5 +1,9 @@
-# 파일명: simple_start.py
 import time
+# 인코딩 문제 해결을 위한 2줄 추가 (한글/이모지 깨짐 방지)
+import sys
+import io
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 
@@ -8,24 +12,23 @@ options = UiAutomator2Options()
 options.platform_name = "Android"
 options.automation_name = "UiAutomator2"
 options.device_name = "MyPhone"
-# 아까 찾으신 정확한 패키지명
+# 패키지명 확인하세요
 options.app_package = "com.example.nipa3_app"
 options.app_activity = "com.example.nipa3_app.LoginActivity"
 options.no_reset = True
 
 # 2. 실행
 try:
-    print("🚀 [GitHub 명령] 앱 실행을 시도합니다...")
-    # 내 컴퓨터(로컬)의 Appium에 연결
+    print("[GitHub Command] Try to open app...")  # 영어로 변경 (안전)
+    
     driver = webdriver.Remote("http://127.0.0.1:4723", options=options)
     
-    print("✅ 앱이 켜졌습니다! 5초간 대기...")
+    print("SUCCESS! App opened. Waiting 5 sec...") # 영어로 변경
     time.sleep(5)
     
-    print("👋 앱을 종료합니다.")
+    print("Closing app...") # 영어로 변경
     driver.quit()
     
 except Exception as e:
-    print(f"❌ 실패! 원인: {e}")
-    # 깃허브가 실패를 알 수 있게 에러를 다시 던짐
+    print(f"FAIL! Error: {e}") # 영어로 변경
     raise e
